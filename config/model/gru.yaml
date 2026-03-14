@@ -1,0 +1,13 @@
+# @package _global_
+module:
+  _target_: emg2qwerty.models.gru.GRUModule
+  in_features: 1056
+  hidden_size: 256
+  num_layers: 2
+  dropout: 0.3
+  bidirectional: true
+
+datamodule:
+  _target_: emg2qwerty.lightning.WindowedEMGDataModule
+  window_length: 8000  # 4 sec windows for 2kHz EMG
+  padding: [1800, 200]  # 900ms past context, 100ms future context
